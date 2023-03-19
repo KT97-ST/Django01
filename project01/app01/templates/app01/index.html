@@ -1,0 +1,10 @@
+{% extends 'app01/base.html' %} {% block content %}
+<p>Welcome {{name}}</p>
+<h2>{{sdsds}}</h2>
+<ul>
+  {%for item in taisan %} {%if item != 'nhieu tien'%}
+  <li>{{item}}</li>
+  {% endif %} {% endfor %}
+</ul>
+
+{% endblock %}

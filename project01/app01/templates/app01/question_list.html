@@ -1,0 +1,9 @@
+{% extends 'app01/base.html' %}
+
+{% block content %}
+    {% if list_question %}
+        {% for item in list_question %}
+            <p>{{ item.question_text }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
