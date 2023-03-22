@@ -1,0 +1,10 @@
+{% extends 'app01/base.html' %} {% block content %}
+    {% if q %}
+        <h3>{{ q.question_text }}</h3>
+        <p>Ket qua binh chon</p>
+        {% for itemchoice in q.choice_set.all %}
+            <p>{{ itemchoice.choice_text }} : {{ itemchoice.vote }}</p>
+        {% endfor %}
+        <a href="{% url 'viewlistquestion' %}"> back</a>
+    {% endif %}
+{% endblock %}

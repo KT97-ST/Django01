@@ -3,7 +3,7 @@
 {% block content %}
     {% if list_question %}
         {% for item in list_question %}
-            <p>{{ item.question_text }}</p>
+            <a href="{% url 'detail' item.id%}"><p>{{ item.question_text }}</p></a>
         {% endfor %}
     {% endif %}
 {% endblock %}
