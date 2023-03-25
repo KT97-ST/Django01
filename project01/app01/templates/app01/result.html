@@ -5,6 +5,6 @@
         {% for itemchoice in q.choice_set.all %}
             <p>{{ itemchoice.choice_text }} : {{ itemchoice.vote }}</p>
         {% endfor %}
-        <a href="{% url 'viewlistquestion' %}"> back</a>
+        <a href="{% url 'app01:viewlistquestion' %}"> back</a>
     {% endif %}
 {% endblock %}

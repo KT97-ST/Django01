@@ -36,6 +36,6 @@ def choiceVote(request, question_id):
         c = q.choice_set.get(pk=rq)
         c.vote = c.vote + 1
         c.save()
-    except:
+    except(KeyError, ValueError):
         HttpResponse("Khong tim thay doi tuong")
     return render(request, "app01/result.html", {"q":q})

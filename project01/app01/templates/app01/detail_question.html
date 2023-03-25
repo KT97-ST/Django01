@@ -1,7 +1,7 @@
 {% extends 'app01/base.html' %} {% block content %}
     <h2>{{ questiontext }}</h2>
     {% if qs %}
-        <form action="{% url 'choicevote' qs.id %}" method="post">
+        <form action="{% url 'app01:choicevote' qs.id %}" method="post">
          {% csrf_token %}
             <ul>
                 {% for item in qs.choice_set.all %}
