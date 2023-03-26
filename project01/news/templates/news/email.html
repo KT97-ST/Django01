@@ -10,12 +10,27 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<form action="{% url 'news:add' %}" method="post">
+<form action="{% url 'news:processemail' %}" method="post">
     {% csrf_token %}
-    <p>{{ f.title }}</p>
-    <p>{{ f.content }}</p>
-    <p>{{ f.time_create }}</p>
-    <input type="submit" value="Add">
+    <div class="form-group">
+      <label for="title">Title:</label>
+         {{ email.title }}
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      {{ email.email }}
+    </div>
+     <div class="form-group">
+      <label for="content">Content:</label>
+      {{ email.content }}
+    </div>
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        {{ email.cc }}cc
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
 </form>
 </body>
+</html>
 </html>
