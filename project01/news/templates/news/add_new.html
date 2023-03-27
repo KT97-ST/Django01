@@ -10,11 +10,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<form action="{% url 'news:add' %}" method="post">
+<form action="{% url 'news:save' %}" method="post">
     {% csrf_token %}
-    <p>{{ f.title }}</p>
-    <p>{{ f.content }}</p>
-    <p>{{ f.time_create }}</p>
+    <p>{{ form.title }}</p>
+    <p>{{ form.content }}</p>
+    <p>{{ form.time_create }}</p>
     <input type="submit" value="Add">
 </form>
 </body>
