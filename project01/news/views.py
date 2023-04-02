@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+
 from .forms import PostForm, SendEmail
 
 
@@ -10,18 +12,25 @@ class IndexClass(View):
         ketqua = "123456"
         return HttpResponse(ketqua)
 
-class ClassSaveNews(View):
+
+class ClassSaveNews(LoginRequiredMixin, View):
+    login_url = '/login/'
+
     def get(self, request):
         form = PostForm()
         return render(request, 'news/add_new.html', {'form': form})
+
     def post(self, request):
         g = PostForm(request.POST)
         if g.is_valid():
-            g.save()
-            return HttpResponse("luu thanh cong")
+            # cache reload 
+            if request.user.has_perm('news.add_post'):
+                g.save()
+                return HttpResponse("luu thanh cong")
+            else:
+                return HttpResponse("May khong co quyen")
         else:
             return HttpResponse("khong duoc validate")
-
 
 
 def email_view(request):
@@ -38,9 +47,9 @@ def process_email(request):
             cc = m.cleaned_data['cc']
             email = m.cleaned_data['email']
             context = {"title": title,
-                      "content": content,
-                      "cc": cc,
-                      "email": email}
+                       "content": content,
+                       "cc": cc,
+                       "email": email}
             return render(request, "news/print_email.html", context)
         else:
             return HttpResponse("from not validate")
